@@ -7,8 +7,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r cars}
 library(readr)
-data <- read_csv(file = "data/listings.csv")
-dataset<-read_csv(file = "data/listings.csv")
+data <- read.csv(file = "data/listings.csv")
+dataset<-read.csv(file = "data/listings.csv")
 str(data)
 library(tidyverse)
 library(ggplot2)
