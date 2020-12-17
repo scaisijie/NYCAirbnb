@@ -10,7 +10,7 @@ Interactive map of NYC
 ```{r}
 #This is the graph of how many airbnb hosts we have in NYC.
 knitr::include_graphics('data/WechatIMG180.jpeg')
-! [text] (data/WechatIMG180.jpeg)
+#! [text] ('data/WechatIMG180.jpeg')
 
 #In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
 knitr::include_graphics('data/WechatIMG181.jpeg')
