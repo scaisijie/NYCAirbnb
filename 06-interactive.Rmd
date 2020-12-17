@@ -1,4 +1,6 @@
 # Interactive component
 
-graph
+Interactive map of NYC
+[`http://mappingnycgr5702.000webhostapp.com/`]{target="_blank"}
 
+['wechat180.img']
