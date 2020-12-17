@@ -4,17 +4,18 @@
 Interactive map of NYC
 ![`http://mappingnycgr5702.000webhostapp.com/`](http://mappingnycgr5702.000webhostapp.com/){target="_blank"}
 
-This is the graph of how many airbnb hosts we have in NYC.
-![test](data/WechatIMG180.jpeg)
-
 Interactive map of NYC
-!['http://mappingnycgr5702.000webhostapp.com/'](http://mappingnycgr5702.000webhostapp.com/)
+![`http://mappingnycgr5702.000webhostapp.com/`](http://mappingnycgr5702.000webhostapp.com/)
 
-This is the graph of how many airbnb hosts we have in NYC.
-[whole graph](data/WechatIMG180.jpeg)
+```{r}
+#This is the graph of how many airbnb hosts we have in NYC.
+knitr::include_graphics('data/WechatIMG180.jpeg')
+! [text] (data/WechatIMG180.jpeg)
 
-In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
-![each pin](/data/WechatIMG181.jpeg)
-
-knitr::include_graphics('/data/WechatIMG180.jpeg')
+#In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
 knitr::include_graphics('data/WechatIMG181.jpeg')
+
+#inter
+![`http://mappingnycgr5702.000webhostapp.com/`](http://mappingnycgr5702.000webhostapp.com/){target="_blank"}
+
+```
