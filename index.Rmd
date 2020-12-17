@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Airbnb in New York City"
+author: "Jing You, Annai Wang, Sijie Cai, Jinyan Lyu"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
