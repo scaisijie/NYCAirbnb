@@ -6,7 +6,7 @@ The listings dataset is in csv format, which can be loaded into R directly. Alth
 
 ```{r, include=FALSE}
 library(dplyr)
-listings <- read_csv("Data/listings.csv.zip") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+listings <- read_csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
 ```
 
 2. Missing values. We observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number. Therefore those listings with N/A bedrooms are all studios. In order to differentiate studio from other one-bedroom listings, we decided to use 0 bedrooms to denote those studios. 

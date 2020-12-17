@@ -6,7 +6,7 @@ The listings dataset has missing values in the following columns : review_scores
 ```{r, include=FALSE}
 library(dplyr)
 library(tidyverse)
-listings <- read_csv("Data/listings.csv.zip") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+listings <- read_csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
 ```
 
 
