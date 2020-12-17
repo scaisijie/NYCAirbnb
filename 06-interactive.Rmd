@@ -16,6 +16,5 @@ knitr::include_graphics('data/WechatIMG180.jpeg')
 knitr::include_graphics('data/WechatIMG181.jpeg')
 
 #inter
-![`http://mappingnycgr5702.000webhostapp.com/`](http://mappingnycgr5702.000webhostapp.com/){target="_blank"}
 
 ```
