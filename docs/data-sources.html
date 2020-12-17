@@ -185,6 +185,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Non-Availability : Almost half of the listings has 0 available days for booking in the year. Note that the host has the choice to set their listing as not available.</p></li>
 </ul>
 <p>The datailed treatment of those issues will be discussed in the following chapters.</p>
+<pre><code>##        id              host_id          host_is_superhost
+##  Min.   :    2595   Min.   :     2438    :   17          
+##  1st Qu.:10555068   1st Qu.:  9354841   f:36633          
+##  Median :22266056   Median : 37854928   t: 8016          
+##  Mean   :23227109   Mean   : 85318403                    
+##  3rd Qu.:36239498   3rd Qu.:137358866                    
+##  Max.   :45730924   Max.   :370512147                    
+##                                                          
+##         neighbourhood_cleansed neighbourhood_group_cleansed    latitude    
+##  Williamsburg      : 3302      Bronx        : 1158          Min.   :40.51  
+##  Bedford-Stuyvesant: 3291      Brooklyn     :17851          1st Qu.:40.69  
+##  Harlem            : 2451      Manhattan    :19741          Median :40.72  
+##  Bushwick          : 2124      Queens       : 5602          Mean   :40.73  
+##  Hell&#39;s Kitchen    : 1782      Staten Island:  314          3rd Qu.:40.76  
+##  Upper West Side   : 1781                                   Max.   :40.91  
+##  (Other)           :29935                                                  
+##    longitude                room_type        bedrooms          price      
+##  Min.   :-74.24   Entire home/apt:22860   Min.   : 1.000   $100.00: 1633  
+##  1st Qu.:-73.98   Hotel room     :  388   1st Qu.: 1.000   $150.00: 1627  
+##  Median :-73.96   Private room   :20498   Median : 1.000   $50.00 : 1364  
+##  Mean   :-73.95   Shared room    :  920   Mean   : 1.292   $60.00 : 1145  
+##  3rd Qu.:-73.93                           3rd Qu.: 1.000   $75.00 : 1140  
+##  Max.   :-73.71                           Max.   :21.000   $80.00 : 1058  
+##                                           NA&#39;s   :4259     (Other):36699  
+##  reviews_per_month review_scores_rating review_scores_location availability_365
+##  Min.   : 0.010    Min.   : 20.00       Min.   : 2.000         Min.   :  0.0   
+##  1st Qu.: 0.110    1st Qu.: 92.00       1st Qu.: 9.000         1st Qu.:  0.0   
+##  Median : 0.350    Median : 97.00       Median :10.000         Median :  1.0   
+##  Mean   : 0.864    Mean   : 93.85       Mean   : 9.594         Mean   :105.4   
+##  3rd Qu.: 1.130    3rd Qu.:100.00       3rd Qu.:10.000         3rd Qu.:189.0   
+##  Max.   :41.370    Max.   :100.00       Max.   :10.000         Max.   :365.0   
+##  NA&#39;s   :10517     NA&#39;s   :11564        NA&#39;s   :11616</code></pre>
 
 </div>
             </section>

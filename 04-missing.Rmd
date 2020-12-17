@@ -1,5 +1,9 @@
 # Missing values
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 The listings dataset has missing values in the following columns : review_scores_location, review_scores_rating, reviews_per_month, bedrooms. 
 
 

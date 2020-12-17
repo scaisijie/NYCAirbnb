@@ -1,5 +1,9 @@
 # Data Sources
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 The data we use for this project is the newest listings Airbnb data for New York City, which is obtained directly from the Inside Airbnb website : http://data.insideairbnb.com/united-states/ny/new-york-city/2020-10-05/data/listings.csv.gz. New York City has always been one of the hottest markets for Airbnb. We believe targeting NYC dataset would provide us rich information to understand the rental landscape in NYC. Note that in this project we only use the listings data. Although Reviews data and Calendar data for upcoming year is also available on the website, we would like to focus on the unbiased numerical data that has been validated. 
 
 
