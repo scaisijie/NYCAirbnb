@@ -18,6 +18,11 @@ listings$bedrooms[is.na(listings$bedrooms)] <-0
 
 3. Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as ">4" since those are rare conditions. 
 
+```{r}
+library(tidyverse)
+library(forcats)
+```
+
 ```{r, echo=FALSE,warning=FALSE}
 listings <- listings %>%
   mutate(neibourhood_cleansed = as.factor(neighbourhood_cleansed)) %>%
