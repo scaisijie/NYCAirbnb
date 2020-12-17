@@ -1,10 +1,12 @@
 # Interactive component
 
 Interactive map of NYC
-[`http://mappingnycgr5702.000webhostapp.com/`]{target="_blank"}
+!['http://mappingnycgr5702.000webhostapp.com/'](http://mappingnycgr5702.000webhostapp.com/){target="_blank"}
 
 This is the graph of how many airbnb hosts we have in NYC.
-['https://github.com/Jinyanlyu/NYCAirbnb/blob/New/data/WechatIMG180.jpeg']
+![whole graph](NYCAirbnb/blob/New/data/WechatIMG180.jpeg)
 
 In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
-['https://github.com/Jinyanlyu/NYCAirbnb/blob/New/data/WechatIMG181.jpeg']
+![each pin](https://github.com/Jinyanlyu/NYCAirbnb/blob/New/data/WechatIMG181.jpeg)
+
+![alt text here](path-to-image-here)
