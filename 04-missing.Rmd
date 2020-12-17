@@ -3,14 +3,14 @@
 The listings dataset has missing values in the following columns : review_scores_location, review_scores_rating, reviews_per_month, bedrooms. 
 
 
-```{r, include=FALSE}
+```{r}
 library(dplyr)
 library(tidyverse)
 listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
 ```
 
 
-```{r, echo=FALSE}
+```{r}
 library(naniar)
 gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb listings Data')
 ```

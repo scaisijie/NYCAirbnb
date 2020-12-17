@@ -46,7 +46,7 @@ The datailed treatment of those issues will be discussed in the following chapte
 
 
 
-```{r, include=FALSE}
+```{r}
 library(dplyr)
 listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
 summary(listings)
