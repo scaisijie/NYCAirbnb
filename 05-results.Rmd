@@ -1,6 +1,6 @@
 # Results
 
-```{r cars}
+```{r cars,echo=FALSE,warning=FALSE}
 library(readr)
 data <- read.csv(file = "data/listingss.csv")
 dataset<-read.csv(file = "data/listingss.csv")
@@ -14,7 +14,7 @@ library(parcoords)
 
 
 
-```{r}
+```{r,echo=TRUE,warning=FALSE}
 #numerical
 #histgram of price
 ggplot(data=data, aes(price))+
@@ -28,9 +28,10 @@ ggplot(data=data, aes(price))+
   labs(x='price')+
   ggtitle('Histogram of price from 0 to 1500')
 ```
-There exist a significant outlier in 10000, so we scale our x aixs from 0 to 1500.
-In our new histogram, we could conduct that there is a trend that most host would like to give a integer price with 0 in ones/ unit digit, and also 0 in tenth digit. 
-
+  
+There exist a significant outlier in 10000, so we scale our x aixs from 0 to 1500.  
+In our new histogram, we could conduct that there is a trend that most host would like to give a integer price with 0 in ones/ unit digit, and also 0 in tenth digit.   
+  
 ```{r}
 #histgram of rating
 ggplot(data=data, aes(rating))+
@@ -38,9 +39,10 @@ ggplot(data=data, aes(rating))+
   labs(x='Rating')+
   ggtitle('Histogram of all Rating')
 ```
-From the rating plot, most the rating score concentrated on (75,100), and people trend to give 100 as the default score. Otherwise, the score will be super low less than 60. It show the rating score are subjective to personal emotion. And also, select bias effect the rating score, once people choose give the listing housing a review, they either extremely love or hate this house. 
+  
+From the rating plot, most the rating score concentrated on (75,100), and people trend to give 100 as the default score. Otherwise, the score will be super low less than 60. It show the rating score are subjective to personal emotion. And also, select bias effect the rating score, once people choose give the listing housing a review, they either extremely love or hate this house.   
 
-
+  
 
 
 ```{r}
@@ -51,10 +53,10 @@ ggplot(data, aes(x = reorder(neighbourhood_group, -price, median), y = price)) +
   labs(x='Neighbourhood Group')+
   ggtitle('The Boxplot of Five Neighbourhood Group with ordered by price median')
 ```
+  
+The box plot of five neighbourhood and rank by the median of prices shows Manhattan has the highest median price. And the Bron has the lowest median price. Even though the median price in five neighbourhoods are relative simliar. In addition, there is a hugh amount of outliers in the higher price. Even if there are a wider range outlier, the majority price still lower than $400.  
 
-The box plot of five neighbourhood and rank by the median of prices shows Manhattan has the highest median price. And the Bron has the lowest median price. Even though the median price in five neighbourhoods are relative simliar. In addition, there is a hugh amount of outliers in the higher price. Even if there are a wider range outlier, the majority price still lower than $400.
-
-
+  
 ```{r}
 dataset$host_since <- format(as.Date(dataset$host_since),
                              "%Y%m%d")
@@ -85,11 +87,11 @@ ggplot(df3,aes(host_since,price))+
   labs(x="Date",y="Price")+
   ggtitle("Time Series of Price on Year 2020 for Airbnb in NYC")
 ```
-
-First, we adjust the price since we consider extreme price points as outliers. We filter the dataset when price is less than 1300 dollars. Then we draw time series plots to see if there is any obvious pattern for date and price, which means we would like to explore if price is significantly associately with seasons.
-From the first plot, it is hard for us to see any patterns. What we can observe is that most of prices are clustered below 500 dollars. Then we zoom in the data a little bit to see if there is any changes. The second and third time series plot is for year 2017 and 2019 seperatly, it is also hard to tell seasonal trend exits from both plots. And two plots look pretty similar. However, we can say that the frequencies of high prices are commonly seen in summer and winter, which is kind of consistent with summer vacation and winter holiday. Therefore, we could conclude price will be higher than usual especially in summer/winter holidays when people are more likely to travel during those time periods. 
-Then we would like to know how the covid19 pandemic will affect Airbnb, so we draw another time series plot for year 2020. Based on the plot, we observe some differences between year 2020 and other years. First, we know the overall price is much lower than usual. Second, after April, the number of booking is jumped down so obviously, which is consistent with the situation of the pandemic.
-
+  
+First, we adjust the price since we consider extreme price points as outliers. We filter the dataset when price is less than 1300 dollars. Then we draw time series plots to see if there is any obvious pattern for date and price, which means we would like to explore if price is significantly associately with seasons.  
+From the first plot, it is hard for us to see any patterns. What we can observe is that most of prices are clustered below 500 dollars. Then we zoom in the data a little bit to see if there is any changes. The second and third time series plot is for year 2017 and 2019 seperatly, it is also hard to tell seasonal trend exits from both plots. And two plots look pretty similar. However, we can say that the frequencies of high prices are commonly seen in summer and winter, which is kind of consistent with summer vacation and winter holiday. Therefore, we could conclude price will be higher than usual especially in summer/winter holidays when people are more likely to travel during those time periods.   
+Then we would like to know how the covid19 pandemic will affect Airbnb, so we draw another time series plot for year 2020. Based on the plot, we observe some differences between year 2020 and other years. First, we know the overall price is much lower than usual. Second, after April, the number of booking is jumped down so obviously, which is consistent with the situation of the pandemic.  
+  
 ```{r}
 dataset <- dataset %>%
   na.omit() %>%
@@ -112,11 +114,11 @@ vcd::mosaic(host_is_superhost~rating_rank,
             highlighting_fill=c3,
             dataset)
 ```
-
-We applied mosaic plots to see frequencies for five areas based on room type and superhost, seperately. From the first plot, we can observe that entire home/apt and private room take the majority part of the room types in NYC Airbnb, which makes sense since few guests would like to share room/space with strangers. Also, it makes hosts' lives much easier if they own the entire house/apt when they join the Airbnb, since they do not need to have aggrements with their roommates.
-The second plot shows that non-superhost is the majority among hosts in different areas in NYC.
-Also, we would like to find whether there is a positive relationship between superhost and rating, which implies superhost is more likely to get a better rating score for living experience. From the last plot, it is not obvious for us to confirm that hypothsis, however, we observe a bunch of guests have great living experience, regardless of superhost or not.
-
+  
+We applied mosaic plots to see frequencies for five areas based on room type and superhost, seperately. From the first plot, we can observe that entire home/apt and private room take the majority part of the room types in NYC Airbnb, which makes sense since few guests would like to share room/space with strangers. Also, it makes hosts' lives much easier if they own the entire house/apt when they join the Airbnb, since they do not need to have aggrements with their roommates.  
+The second plot shows that non-superhost is the majority among hosts in different areas in NYC.  
+Also, we would like to find whether there is a positive relationship between superhost and rating, which implies superhost is more likely to get a better rating score for living experience. From the last plot, it is not obvious for us to confirm that hypothsis, however, we observe a bunch of guests have great living experience, regardless of superhost or not.  
+  
 
 
 ```{r}
@@ -152,22 +154,22 @@ data%>%filter(neighbourhood_group=='Staten Island')%>%group_by(neighbourhood,rat
   labs(x='Staten Island average rating score',y='Staten Island Neighbourhood')+
   ggtitle('Staten Island Neighbourhood average rating score')
 ```
+  
 
 
+The cleveland dot plot of five neighbourhoods, we could see the average rating score of Staten Island is the highest, while Brooklyn is the lowest rating score. Besides, the average rating score of all neighbourhood group are apporomately simliar the highst is 7 and lowest is 6.  
 
-the cleveland dot plot of five neighbourhoods, we could see the average rating score of Staten Island is the highest, while Brooklyn is the lowest rating score. Besides, the average rating score of all neighbourhood group are apporomately simliar the highst is 7 and lowest is 6.
+In Brooklyn, Bushwick has the lowest average rating score about 6, while Navy Yard, Fort Hamilton, and Brooklyn Heights, are the three neighbourhood touristor thought they are perfect with grade 10. Besides, most neighbourhoods in Brooklyn gets a score from 7 to 9.  
 
-In Brooklyn, Bushwick has the lowest average rating score about 6, while Navy Yard, Fort Hamilton, and Brooklyn Heights, are the three neighbourhood touristor thought they are perfect with grade 10. Besides, most neighbourhoods in Brooklyn gets a score from 7 to 9.
+In Bronx, the score range are relatively wider, which means people may be polarization. West Farm has the lowest average rating score about 5.5, compare with Castle Hill has the highest rating score in 10 as perfect. The average rating score of all neighbourhood group in Bronx are from 8.3 to 9.5.  
 
-In Bronx, the score range are relatively wider, which means people may be polarization. West Farm has the lowest average rating score about 5.5, compare with Castle Hill has the highest rating score in 10 as perfect. The average rating score of all neighbourhood group in Bronx are from 8.3 to 9.5.
+In Manhattan, NoHo and Maple Hill has the highest rating score. And those central business district and shopping center like Midtown has the relatively lower rating score. And we can see the Upper town west where Columbia located also has the relatively low rating score. In addition, Harlem and East Harlem have the lowest score around 6.33.  
 
-In Manhattan, NoHo and Maple Hill has the highest rating score. And those central business district and shopping center like Midtown has the relatively lower rating score. And we can see the Upper town west where Columbia located also has the relatively low rating score. In addition, Harlem and East Harlem have the lowest score around 6.33.
+In Queens, Rego Park has the lowest score like 6.2, and about 6 neighbourhood has the highest rating score.  
 
-In Queens, Rego Park has the lowest score like 6.2, and about 6 neighbourhood has the highest rating score.
+In Staten Island, the range of score are narrower than others, which means people recommend most neighbourhood in Staten Island. Tompkinsville has the lowest rating score about 7.1. Other neighbouhood in Staten Island have a score higher than 8. And most of them are either 9.5 or 10. Staten Island might be most recommend living place for tourist.   
 
-In Staten Island, the range of score are narrower than others, which means people recommend most neighbourhood in Staten Island. Tompkinsville has the lowest rating score about 7.1. Other neighbouhood in Staten Island have a score higher than 8. And most of them are either 9.5 or 10. Staten Island might be most recommend living place for tourist. 
-
-
+  
 
 
 
@@ -184,11 +186,11 @@ ggparcoord(dataset,
            groupColumn=23, 
            title = "Parallel Coordinate Plot Based on Rating Ranks")
 ```
-
-We use parallel coordinate plots to explore if any relationships exist among those numeric variables, such as number of bedrooms, price. Also,we draw those plots based on levels of selected categorical variables, such as rating_rank, room_type.
-The first plot is grouped by room_type. From the plot, we see entire home/apt and private room have a majority part among all types. We observe there is a negative relationship between number of bedrooms and price, which makes more sense if we consider room types here. It is obvious to see there is a positive relationship between price and rating. If price is high, the quality of the house is great, on average, thus guests will have good living experience. What's more, there is a negative relationship between rating and reviews_per_month.
-The second plot is based on rating_rank. The shape of the plot is pretty similar with the one in the first plot. Negative relationships between number of bedrooms and price, rating and reviews_per_month. And a positive relationship between price and rating.
-
+  
+We use parallel coordinate plots to explore if any relationships exist among those numeric variables, such as number of bedrooms, price. Also,we draw those plots based on levels of selected categorical variables, such as rating_rank, room_type.  
+The first plot is grouped by room_type. From the plot, we see entire home/apt and private room have a majority part among all types. We observe there is a negative relationship between number of bedrooms and price, which makes more sense if we consider room types here. It is obvious to see there is a positive relationship between price and rating. If price is high, the quality of the house is great, on average, thus guests will have good living experience. What's more, there is a negative relationship between rating and reviews_per_month.  
+The second plot is based on rating_rank. The shape of the plot is pretty similar with the one in the first plot. Negative relationships between number of bedrooms and price, rating and reviews_per_month. And a positive relationship between price and rating.  
+  
 ```{r}
 ggplot(as.data.frame(count(dataset, 
                            host_is_superhost,

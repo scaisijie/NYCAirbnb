@@ -7,3 +7,13 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+This is a project for class Exploratory Data Analysis/Visualizations in Columbia University. Our team presents interactive visualizations and interesting insights into the Airbnb data. We like choosing Airbnb for accommodations when traveling because of their low cost, convenient location, and household amenities. We focus on New York City’s data because we live in New York and we love this amazing city, we wish to perform an in-depth analysis on one of the most popular popular tourist destinations in the world.  
+  
+Following are a few questions that we aim to answer through our analysis:  
+1. How is the price and rating of Airbnb in NYC?  
+2. How do prices vary by neighbourhoods?  
+3. What is the time series pattern for prices?  
+4. What makes a host Super host?  
+5. How do rating scores vary by neighbourhoods?  
+6. Is there any relations existing among variables?   
+  

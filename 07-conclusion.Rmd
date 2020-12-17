@@ -1,2 +1,23 @@
 # Conclusion
 
+Through this exploratory data analysis and visualization project, we gained insights into the Airbnb rental market. Below we will summarise the answers to the questions that we wished to answer at the beginning of the project:
+
+**How is the price and rating of Airbnb in NYC?** Excluding significant outliers, mean price is around 100. We find it interesting that most host would like to give a integer price with 0 in ones/ unit digit, and also 0 in tenth digit.  
+  
+**How do prices vary by neighbourhoods?** Manhattan has the highest median price. And the Bron has the lowest median price.  
+  
+**What is the time series pattern for prices?**  There is no obvious seasonal pattern in past year prices. But we find frequencies of high prices are commonly seen in summer and winter, which is kind of consistent with summer vacation and winter holiday.   
+  
+**What makes a host Super host?** Guests have great living experience, regardless of superhost or not.  
+  
+**How do rating scores vary by neighbourhoods?** The average rating score of Staten Island is the highest, while Brooklyn is the lowest rating score.   
+  
+**Is there any relations existing among variables?** Negative relationshipS between number of bedrooms and price, rating and reviews_per_month; positive relationship between price and rating.  
+  
+  
+**Limitations**  
+Real data is not perfect especially for the missing values and large outliers. There were certain features such as acceptance_rate, monthly_price and description that either contained missing values or values in the free-text format that was not easy to work on and hence were dropped from our analysis. We don't want to loose much information when we excluding outliers, but keeping thoses large numbers makes our plots not that standardized.  
+  
+
+**Future Directions**  
+We want to deepen our analysis in 2020 and years after to see how our loved city experienced in this pandemic period and how is it has been recovered. We would also like to use our model in other cities to check their situations.  

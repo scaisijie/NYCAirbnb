@@ -10,19 +10,16 @@ listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_
 ```
 
 
-```{r}
+```{r,echo=TRUE,warning=FALSE}
 library(naniar)
 gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb listings Data')
 ```
 
-```{r, echo=FALSE,warning=FALSE}
- 
-```
 
 
 As for missing values in "bedrooms", we observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number.  
 
-```{r, echo=FALSE,warning=FALSE}
+```{r, echo=TRUE,warning=FALSE}
 library(ggplot2)
 ggplot(listings, aes(as.factor(bedrooms))) +
 geom_bar(color = "grey50", fill = "lightblue",xlab="Number of bedrooms") 

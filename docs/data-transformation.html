@@ -165,9 +165,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Subset the data. We reduced the dataset from 76 attributes to our selected 18 attributes.</p></li>
 <li><p>Missing values. We observe that there are no 0s in the “bedrooms” attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number. Therefore those listings with N/A bedrooms are all studios. In order to differentiate studio from other one-bedroom listings, we decided to use 0 bedrooms to denote those studios.</p></li>
-<li><p>Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as “&gt;4” since those are rare conditions.</p></li>
-<li><p>Rename variables. We rename the variables name to be more reflective of the cotents.</p></li>
 </ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-transformation.html#cb1-1" aria-hidden="true"></a>listings<span class="op">$</span>bedrooms[<span class="kw">is.na</span>(listings<span class="op">$</span>bedrooms)] &lt;-<span class="dv">0</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as “&gt;4” since those are rare conditions.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-transformation.html#cb2-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="data-transformation.html#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(forcats)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-transformation.html#cb3-1" aria-hidden="true"></a>listings &lt;-<span class="st"> </span>listings <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="data-transformation.html#cb3-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">neibourhood_cleansed =</span> <span class="kw">as.factor</span>(neighbourhood_cleansed)) <span class="op">%&gt;%</span></span>
+<span id="cb3-3"><a href="data-transformation.html#cb3-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">neibourhood_group_cleansed =</span> <span class="kw">as.factor</span>(neighbourhood_group_cleansed)) <span class="op">%&gt;%</span></span>
+<span id="cb3-4"><a href="data-transformation.html#cb3-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(room_type, <span class="kw">as.factor</span>(room_type)) <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="data-transformation.html#cb3-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bedrooms =</span> <span class="kw">fct_collapse</span>(<span class="kw">factor</span>(bedrooms),<span class="st">&quot;0&quot;</span> =<span class="st"> &quot;0&quot;</span>, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;1&quot;</span>,<span class="st">&quot;2&quot;</span> =<span class="st"> &quot;2&quot;</span>,<span class="st">&quot;3&quot;</span> =<span class="st"> &quot;3&quot;</span>,<span class="st">&quot;4&quot;</span> =<span class="st"> &quot;4&quot;</span>,<span class="dt">group_other =</span> <span class="ot">TRUE</span>))<span class="op">%&gt;%</span></span>
+<span id="cb3-6"><a href="data-transformation.html#cb3-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bedrooms =</span> <span class="kw">fct_collapse</span>(bedrooms, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;0&quot;</span>,<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;1&quot;</span>,<span class="st">&quot;2&quot;</span> =<span class="st"> &quot;2&quot;</span>, <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;3&quot;</span>,<span class="st">&quot;4&quot;</span> =<span class="st"> &quot;4&quot;</span>,<span class="st">&quot;&gt;4&quot;</span> =<span class="st"> &quot;Other&quot;</span>)) </span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Rename variables. We rename the variables name to be more reflective of the cotents.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-transformation.html#cb4-1" aria-hidden="true"></a>listings &lt;-<span class="st"> </span>listings <span class="op">%&gt;%</span></span>
+<span id="cb4-2"><a href="data-transformation.html#cb4-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rename</span>(</span>
+<span id="cb4-3"><a href="data-transformation.html#cb4-3" aria-hidden="true"></a>    <span class="dt">neibourhood=</span> neibourhood_cleansed,</span>
+<span id="cb4-4"><a href="data-transformation.html#cb4-4" aria-hidden="true"></a>    <span class="dt">neighbourhood_group =</span> neighbourhood_group_cleansed,</span>
+<span id="cb4-5"><a href="data-transformation.html#cb4-5" aria-hidden="true"></a>    <span class="dt">rating =</span> review_scores_rating,</span>
+<span id="cb4-6"><a href="data-transformation.html#cb4-6" aria-hidden="true"></a>    <span class="dt">rating_location =</span> review_scores_location,</span>
+<span id="cb4-7"><a href="data-transformation.html#cb4-7" aria-hidden="true"></a>    <span class="dt">year_availability =</span> availability_<span class="dv">365</span>,</span>
+<span id="cb4-8"><a href="data-transformation.html#cb4-8" aria-hidden="true"></a>  )</span></code></pre></div>
 
 </div>
             </section>

@@ -11,19 +11,19 @@ listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_
 
 2. Missing values. We observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number. Therefore those listings with N/A bedrooms are all studios. In order to differentiate studio from other one-bedroom listings, we decided to use 0 bedrooms to denote those studios. 
 
-```{r}
+```{r,echo=TRUE,warning=FALSE}
 listings$bedrooms[is.na(listings$bedrooms)] <-0
 ```
 
 
 3. Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as ">4" since those are rare conditions. 
 
-```{r, include=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 library(tidyverse)
 library(forcats)
 ```
 
-```{r}
+```{r,echo=TRUE,warning=FALSE}
 listings <- listings %>%
   mutate(neibourhood_cleansed = as.factor(neighbourhood_cleansed)) %>%
   mutate(neibourhood_group_cleansed = as.factor(neighbourhood_group_cleansed)) %>%
@@ -34,7 +34,7 @@ listings <- listings %>%
 
 4. Rename variables. We rename the variables name to be more reflective of the cotents. 
 
-```{r}
+```{r,echo=TRUE,warning=FALSE}
 listings <- listings %>%
   rename(
     neibourhood= neibourhood_cleansed,

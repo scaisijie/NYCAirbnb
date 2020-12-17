@@ -185,6 +185,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Non-Availability : Almost half of the listings has 0 available days for booking in the year. Note that the host has the choice to set their listing as not available.</p></li>
 </ul>
 <p>The datailed treatment of those issues will be discussed in the following chapters.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-sources.html#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="data-sources.html#cb1-2" aria-hidden="true"></a>listings &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/listings.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_<span class="dv">365</span>)</span>
+<span id="cb1-3"><a href="data-sources.html#cb1-3" aria-hidden="true"></a><span class="kw">summary</span>(listings)</span></code></pre></div>
 <pre><code>##        id              host_id          host_is_superhost
 ##  Min.   :    2595   Min.   :     2438    :   17          
 ##  1st Qu.:10555068   1st Qu.:  9354841   f:36633          
