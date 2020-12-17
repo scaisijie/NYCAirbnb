@@ -3,24 +3,35 @@
 The listings dataset has missing values in the following columns : review_scores_location, review_scores_rating, reviews_per_month, bedrooms. 
 
 
-```{r}
+```{r, include=FALSE}
 library(dplyr)
 library(tidyverse)
-listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+
+
+listings <- read_csv("Data/listings.csv.zip") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
 ```
 
 
-```{r,echo=TRUE,warning=FALSE}
+```{r, echo=FALSE}
 library(naniar)
-gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb listings Data')
+naniar::gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb listings Data')
 ```
 
+We observe that review_per_month, review_scores_rating, and review_scores_location are often missing all together, which is reasonable since review_scores_location is part of the reviews_scores_rating and if there is no reviews at all, both reviews_per_month and review_scores_location would be missing. 
+
+```{r, echo=FALSE,warning=FALSE}
+library(extracat)
+extracat::visna(listings)
+```
 
 
 As for missing values in "bedrooms", we observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number.  
 
-```{r, echo=TRUE,warning=FALSE}
+```{r, echo=FALSE,warning=FALSE}
 library(ggplot2)
+
 ggplot(listings, aes(as.factor(bedrooms))) +
 geom_bar(color = "grey50", fill = "lightblue",xlab="Number of bedrooms") 
+
 ```
+
