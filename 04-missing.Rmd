@@ -20,8 +20,8 @@ naniar::gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb
 We observe that review_per_month, review_scores_rating, and review_scores_location are often missing all together, which is reasonable since review_scores_location is part of the reviews_scores_rating and if there is no reviews at all, both reviews_per_month and review_scores_location would be missing. 
 
 ```{r, echo=FALSE,warning=FALSE}
-#library(extracat)
-#extracat::visna(listings)
+library(extracat)
+extracat::visna(listings)
 ```
 
 

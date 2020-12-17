@@ -162,14 +162,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
 <p>The listings dataset has missing values in the following columns : review_scores_location, review_scores_rating, reviews_per_month, bedrooms.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="missing-values.html#cb6-1" aria-hidden="true"></a><span class="kw">library</span>(naniar)</span>
-<span id="cb6-2"><a href="missing-values.html#cb6-2" aria-hidden="true"></a><span class="kw">gg_miss_var</span>(listings) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Number of missing points in Airbnb listings Data&#39;</span>)</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="missing-values.html#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(naniar)</span>
+<span id="cb1-2"><a href="missing-values.html#cb1-2" aria-hidden="true"></a>naniar<span class="op">::</span><span class="kw">gg_miss_var</span>(listings) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Number of missing points in Airbnb listings Data&#39;</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>We observe that review_per_month, review_scores_rating, and review_scores_location are often missing all together, which is reasonable since review_scores_location is part of the reviews_scores_rating and if there is no reviews at all, both reviews_per_month and review_scores_location would be missing.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>As for missing values in “bedrooms”, we observe that there are no 0s in the “bedrooms” attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="missing-values.html#cb7-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="missing-values.html#cb7-2" aria-hidden="true"></a><span class="kw">ggplot</span>(listings, <span class="kw">aes</span>(<span class="kw">as.factor</span>(bedrooms))) <span class="op">+</span></span>
-<span id="cb7-3"><a href="missing-values.html#cb7-3" aria-hidden="true"></a><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;grey50&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Number of bedrooms&quot;</span>) </span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="missing-values.html#cb2-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="missing-values.html#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="missing-values.html#cb2-3" aria-hidden="true"></a><span class="kw">ggplot</span>(listings, <span class="kw">aes</span>(<span class="kw">as.factor</span>(bedrooms))) <span class="op">+</span></span>
+<span id="cb2-4"><a href="missing-values.html#cb2-4" aria-hidden="true"></a><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;grey50&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Number of bedrooms&quot;</span>) </span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 </div>
             </section>
