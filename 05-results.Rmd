@@ -26,6 +26,7 @@ ggplot(data=dataset, aes(price))+
   labs(x='price')+
   ggtitle('Histogram of price from 0 to 1500')
 ```
+  
 There exist a significant outlier in 10000, so we scale our x aixs from 0 to 1500.  
 In our new histogram, we could conduct that there is a trend that most host would like to give a integer price with 0 in ones/ unit digit, and also 0 in tenth digit.   
 
@@ -36,6 +37,7 @@ ggplot(data=dataset, aes(rating))+
   labs(x='Rating')+
   ggtitle('Histogram of all Rating')
 ```
+  
 From the rating plot, most the rating score concentrated on (75,100), and people trend to give 100 as the default score. Otherwise, the score will be super low less than 60. It show the rating score are subjective to personal emotion. And also, select bias effect the rating score, once people choose give the listing housing a review, they either extremely love or hate this house.   
 
   
@@ -205,7 +207,7 @@ dataset%>%
 ```
 
 
-the cleveland dot plot of five neighbourhoods, we could see the average rating score of Staten Island is the highest, while Brooklyn is the lowest rating score. Besides, the average rating score of all neighbourhood group are apporomately simliar the highst is 7 and lowest is 6.
+The cleveland dot plot of five neighbourhoods, we could see the average rating score of Staten Island is the highest, while Brooklyn is the lowest rating score. Besides, the average rating score of all neighbourhood group are apporomately simliar the highst is 7 and lowest is 6.
 
 In Brooklyn, Bushwick has the lowest average rating score about 6, while Navy Yard, Fort Hamilton, and Brooklyn Heights, are the three neighbourhood touristor thought they are perfect with grade 10. Besides, most neighbourhoods in Brooklyn gets a score from 7 to 9.
 

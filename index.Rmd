@@ -16,4 +16,9 @@ Following are a few questions that we aim to answer through our analysis:
 4. What makes a host Super host?  
 5. How do rating scores vary by neighbourhoods?  
 6. Is there any relations existing among variables?   
-  
+   
+   
+```{r, fig.align="center"}
+#In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
+knitr::include_graphics('data/Low_Library_NYC_skyline.jpg'）
+```
