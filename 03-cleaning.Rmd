@@ -1,1 +1,41 @@
 # Data transformation
+
+The listings dataset is in csv format, which can be loaded into R directly. Although we import the data successfully, there are some transformations needed in order to perform further analysis. 
+
+1. Subset the data. We reduced the dataset from 76 attributes to our selected 18 attributes. 
+
+```{r, include=FALSE}
+library(dplyr)
+listings <- read_csv("Data/listings.csv.zip") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+```
+
+2. Missing values. We observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number. Therefore those listings with N/A bedrooms are all studios. In order to differentiate studio from other one-bedroom listings, we decided to use 0 bedrooms to denote those studios. 
+
+```{r, include=FALSE}
+listings$bedrooms[is.na(listings$bedrooms)] <-0
+```
+
+
+3. Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as ">4" since those are rare conditions. 
+
+```{r, echo=FALSE,warning=FALSE}
+listings <- listings %>%
+  mutate(neibourhood_cleansed = as.factor(neighbourhood_cleansed)) %>%
+  mutate(neibourhood_group_cleansed = as.factor(neighbourhood_group_cleansed)) %>%
+  mutate(room_type, as.factor(room_type)) %>%
+  mutate(bedrooms = fct_collapse(factor(bedrooms),"0" = "0", "1" = "1","2" = "2","3" = "3","4" = "4",group_other = TRUE))%>%
+  mutate(bedrooms = fct_collapse(bedrooms, "0" = "0","1" = "1","2" = "2", "3" = "3","4" = "4",">4" = "Other")) 
+```
+
+4. Rename variables. We rename the variables name to be more reflective of the cotents. 
+
+```{r, echo=FALSE,warning=FALSE}
+listings <- listings %>%
+  rename(
+    neibourhood= neibourhood_cleansed,
+    neighbourhood_group = neighbourhood_group_cleansed,
+    rating = review_scores_rating,
+    rating_location = review_scores_location,
+    year_availability = availability_365,
+  )
+```

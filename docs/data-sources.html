@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data sources | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 2 Data sources | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 2 Data Sources | Airbnb in New York City</title>
+  <meta name="description" content="Chapter 2 Data Sources | Airbnb in New York City" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 2 Data Sources | Airbnb in New York City" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 2 Data Sources | Airbnb in New York City" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Jing You, Annai Wang, Sijie Cai, Jinyan Lyu" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data-transformation.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +51,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 
@@ -68,11 +67,11 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">NYC Airbnb</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data Sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
@@ -89,7 +88,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Airbnb in New York City</a>
           </h1>
         </div>
 
@@ -98,7 +97,31 @@
 
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<h1><span class="header-section-number">Chapter 2</span> Data Sources</h1>
+<p>The data we use for this project is the newest listings Airbnb data for New York City, which is obtained directly from the Inside Airbnb website : <a href="http://data.insideairbnb.com/united-states/ny/new-york-city/2020-10-05/data/listings.csv.gz" class="uri">http://data.insideairbnb.com/united-states/ny/new-york-city/2020-10-05/data/listings.csv.gz</a>. New York City has always been one of the hottest markets for Airbnb. We believe targeting NYC dataset would provide us rich information to understand the rental landscape in NYC. Note that in this project we only use the listings data. Although Reviews data and Calendar data for upcoming year is also available on the website, we would like to focus on the unbiased numerical data that has been validated.</p>
+<p>The listings dataset is consists of 74 attributes for 44,666 listing in New York City. As we aim to gain a holistic analysis of the Aribnb market in New York City, we discard many uninformative or miscellaneous attributes such as id, host names, urls, review times, and descriptions etc. We deliberately select 18 attributes that covers the The attributes we selected for our analysis are the following:</p>
+<ul>
+<li><p>Listing id : contiunous variable, the id of the listing</p></li>
+<li><p>Host id : contiunous variable, the id of the host of the listing</p></li>
+<li><p>Host_is_superhost : categorical variable, whether or not the host for this listing is superhost (Experienced hosts who provide a shining example for other hosts, and extraordinary experiences for their guests)</p></li>
+<li><p>Neighbourhood_cleansed : categorical variable, the neighborhood of the listing (Midtown, Hell’s Kitchen, Upper West Side …)</p></li>
+<li><p>Neighborhood_group_cleansed : categorical variable, the neighborhood group of the listing (Manhatten, Brooklyn, Bronx …)</p></li>
+<li><p>Latitude : contiunous variable, the latitude of the listing</p></li>
+<li><p>Longitude : contiunous variable, the longtitude of the listing</p></li>
+<li><p>Room_type : categorical variable, the room type of the listing (Entire home, Private room …)</p></li>
+<li><p>Bedrooms : categorical variable, the number of bedrooms in the listing</p></li>
+<li><p>Price : contiunous variable, the price per night for the listing</p></li>
+<li><p>Reviews per month : contiunous variable, the average number of reviews the listing received per month</p></li>
+<li><p>Review_scores_rating : contiunous variable, the overall rating of the listing</p></li>
+<li><p>Review_scores_location : contiunous variable, the rating for the locating of the listing</p></li>
+<li><p>Availability_365 : contiunous variable, the number of available days of the listing per year</p></li>
+</ul>
+<p>We notice several issues related to the dataset:</p>
+<ul>
+<li><p>Missing values : There are NA’s in 4 columns (bedrooms, reviews_per_month, reviews_scores_rating, review_scores_location)</p></li>
+<li><p>Non-Availability : Almost half of the listings has 0 available days for booking in the year. Note that the host has the choice to set their listing as not available.</p></li>
+</ul>
+<p>The datailed treatment of those issues will be discussed in the following chapters.</p>
 
 </div>
             </section>
@@ -138,7 +161,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/02-data.Rmd",
+"link": "https://github.com/scaisijie/NYCAirbnb/edit/main/02-data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +169,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/02-data.Rmd",
+"link": "https://github.com/scaisijie/NYCAirbnb/blob/main/02-data.Rmd",
 "text": null
 },
 "download": null,
