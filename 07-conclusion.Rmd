@@ -16,7 +16,7 @@ Through this exploratory data analysis and visualization project, we gained insi
   
   
 **Limitations**  
-Real data is not perfect especially for the missing values and large outliers. There were certain features such as acceptance_rate, monthly_price and description that either contained missing values or values in the free-text format that was not easy to work on and hence were dropped from our analysis. We don't want to loose much information when we excluding outliers, but keeping thoses large numbers makes our plots not that standardized.  
+Real data is not perfect especially for the missing values and large outliers. There were certain features such as acceptance_rate, monthly_price and description that either contained missing values or values in the free-text format that was not easy to work on and hence were dropped from our analysis. Also, we don't want to loose much information when we excluding outliers, but keeping thoses large numbers makes our plots not that standardized.  
   
 
 **Future Directions**  

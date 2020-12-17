@@ -11,6 +11,7 @@ knitr::include_graphics('data/WechatIMG180.jpeg')
 From the first picture, we can see there is a bunch of red bubbles, and in each of them , there is a number. If we mouse on one bubble, we can see the related region/area represented by that bubble is plotted in blue lines.
 
 
+
 ```{r}
 #In each host, we show the price, rate, bedroom type in graph, user can see it by click on pins.
 knitr::include_graphics('data/WechatIMG181.jpeg'）
