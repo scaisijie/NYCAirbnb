@@ -1,4 +1,202 @@
+--- 
+title: "Airbnb in New York City"
+author: "Jing You, Annai Wang, Sijie Cai, Jinyan Lyu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Introduction
+
+
+<!--chapter:end:index.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Data Sources
+
+
+The data we use for this project is the newest listings Airbnb data for New York City, which is obtained directly from the Inside Airbnb website : http://data.insideairbnb.com/united-states/ny/new-york-city/2020-10-05/data/listings.csv.gz. New York City has always been one of the hottest markets for Airbnb. We believe targeting NYC dataset would provide us rich information to understand the rental landscape in NYC. Note that in this project we only use the listings data. Although Reviews data and Calendar data for upcoming year is also available on the website, we would like to focus on the unbiased numerical data that has been validated. 
+
+
+The listings dataset is consists of 74 attributes for 44,666 listing in New York City. As we aim to gain a holistic analysis of the Aribnb market in New York City, we discard many uninformative or miscellaneous attributes such as id, host names, urls, review times, and descriptions etc. We deliberately select 18 attributes that covers the The attributes we selected for our analysis are the following: 
+
+*   Listing id : contiunous variable, the id of the listing
+
+*   Host id : contiunous variable, the id of the host of the listing
+
+*   Host_is_superhost : categorical variable, whether or not the host for this listing is superhost (Experienced hosts who provide a shining example for other hosts, and extraordinary experiences for their guests)
+
+*   Neighbourhood_cleansed : categorical variable, the neighborhood of the listing (Midtown, Hell's Kitchen, Upper West Side ...)
+
+*   Neighborhood_group_cleansed : categorical variable, the neighborhood group of the listing (Manhatten, Brooklyn, Bronx ...)
+
+*   Latitude : contiunous variable, the latitude of the listing
+
+*   Longitude : contiunous variable, the longtitude of the listing
+
+*   Room_type : categorical variable, the room type of the listing (Entire home, Private room ...)
+
+*   Bedrooms : categorical variable, the number of bedrooms in the listing
+
+*   Price : contiunous variable, the price per night for the listing
+
+*   Reviews per month : contiunous variable, the average number of reviews the listing received per month
+
+*   Review_scores_rating : contiunous variable, the overall rating of the listing
+
+*   Review_scores_location : contiunous variable, the rating for the locating of the listing
+
+*   Availability_365 : contiunous variable, the number of available days of the listing per year
+
+
+We notice several issues related to the dataset:
+
+* Missing values : There are NA's in 4 columns (bedrooms, reviews_per_month, reviews_scores_rating, review_scores_location)
+
+* Non-Availability : Almost half of the listings has 0 available days for booking in the year. Note that the host has the choice to set their listing as not available. 
+
+The datailed treatment of those issues will be discussed in the following chapters. 
+
+
+
+
+
+```{r}
+library(dplyr)
+listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+summary(listings)
+```
+
+<!--chapter:end:02-data.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Data transformation
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The listings dataset is in csv format, which can be loaded into R directly. Although we import the data successfully, there are some transformations needed in order to perform further analysis. 
+
+1. Subset the data. We reduced the dataset from 76 attributes to our selected 18 attributes. 
+
+```{r}
+library(dplyr)
+listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+```
+
+2. Missing values. We observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number. Therefore those listings with N/A bedrooms are all studios. In order to differentiate studio from other one-bedroom listings, we decided to use 0 bedrooms to denote those studios. 
+
+```{r}
+listings$bedrooms[is.na(listings$bedrooms)] <-0
+```
+
+
+3. Encode categorical variables. We encode the categorical variables neibourhood, neibourhood_group, room_type, and bedrooms as factors with corresponding levels. Note that we aggregate all bedrooms number greater than 4 as ">4" since those are rare conditions. 
+
+```{r, include=FALSE}
+library(tidyverse)
+library(forcats)
+```
+
+```{r}
+listings <- listings %>%
+  mutate(neibourhood_cleansed = as.factor(neighbourhood_cleansed)) %>%
+  mutate(neibourhood_group_cleansed = as.factor(neighbourhood_group_cleansed)) %>%
+  mutate(room_type, as.factor(room_type)) %>%
+  mutate(bedrooms = fct_collapse(factor(bedrooms),"0" = "0", "1" = "1","2" = "2","3" = "3","4" = "4",group_other = TRUE))%>%
+  mutate(bedrooms = fct_collapse(bedrooms, "0" = "0","1" = "1","2" = "2", "3" = "3","4" = "4",">4" = "Other")) 
+```
+
+4. Rename variables. We rename the variables name to be more reflective of the cotents. 
+
+```{r}
+listings <- listings %>%
+  rename(
+    neibourhood= neibourhood_cleansed,
+    neighbourhood_group = neighbourhood_group_cleansed,
+    rating = review_scores_rating,
+    rating_location = review_scores_location,
+    year_availability = availability_365,
+  )
+```
+
+<!--chapter:end:03-cleaning.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Missing values
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The listings dataset has missing values in the following columns : review_scores_location, review_scores_rating, reviews_per_month, bedrooms. 
+
+
+```{r}
+library(dplyr)
+library(tidyverse)
+listings <- read.csv(file = "data/listings.csv") %>% select(id,host_id, host_is_superhost, neighbourhood_cleansed, neighbourhood_group_cleansed, latitude, longitude, room_type, bedrooms, price, reviews_per_month, review_scores_rating, review_scores_location, availability_365)
+```
+
+
+```{r}
+library(naniar)
+gg_miss_var(listings) + labs(title = 'Number of missing points in Airbnb listings Data')
+```
+
+```{r, echo=FALSE,warning=FALSE}
+ 
+```
+
+
+As for missing values in "bedrooms", we observe that there are no 0s in the "bedrooms" attribute. After exploring the listings description in the dataset and the Airbnb website, we notice that studios listing does not specify bedroom number.  
+
+```{r, echo=FALSE,warning=FALSE}
+library(ggplot2)
+ggplot(listings, aes(as.factor(bedrooms))) +
+geom_bar(color = "grey50", fill = "lightblue",xlab="Number of bedrooms") 
+```
+
+<!--chapter:end:04-missing.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
 # Results
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 
 ```{r cars}
 library(readr)
@@ -213,4 +411,32 @@ ggplot(as.data.frame(count(dataset,
 
 From the alluvial plot, we clearly see that super-host is a small part among hosts in NYC Airbnb since a bunch of flows go through the FALSE node. For room types, entire home/apt and private room take the majority part among all types, which is consistent with travelers' preference. Also, we observe that most Airbnb housing is located in Manhattan, which implies travelers will consider Manhattan first and it has a priority over other areas in NYC. In addition, guests have great living experience on average since most guests give the housing very good score. From the plot, we see a lot of flows pass through ranking nodes: Good, Very Good and Perfect. Also, super-hosts tend to have higher ratings since we barely see blue flows via Fair and Bad nodes. In general, Airbnb housing in NYC provides guests/travelers great living experiences.
 
+
+
+<!--chapter:end:05-results.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Interactive component
+
+
+
+<!--chapter:end:06-interactive.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Conclusion
+
+
+<!--chapter:end:07-conclusion.Rmd-->
 

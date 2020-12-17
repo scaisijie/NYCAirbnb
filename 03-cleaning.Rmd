@@ -1,9 +1,5 @@
 # Data transformation
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 The listings dataset is in csv format, which can be loaded into R directly. Although we import the data successfully, there are some transformations needed in order to perform further analysis. 
 
 1. Subset the data. We reduced the dataset from 76 attributes to our selected 18 attributes. 
